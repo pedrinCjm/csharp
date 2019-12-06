@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 
 namespace firstProgram
 {
@@ -6,7 +7,10 @@ namespace firstProgram
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Regras regras1 = new Regras();
+            Console.WriteLine(regras1.imprime());
+            bib.Regras regras = new bib.Regras();
+            Console.WriteLine(regras.imprime());
         }
     }
 }

@@ -25,7 +25,34 @@ namespace aspNetCore.Controllers
 
         public IActionResult Privacy()
         {
-            return View();
+            Usuario usuario = new Usuario();
+            return View(usuario);
+        }
+
+        [HttpPost]
+        public IActionResult Privacy(Usuario usuario)
+        {
+            //if (string.IsNullOrEmpty(usuario.Nome))
+            //{
+            //    ModelState.AddModelError("Nome", "O campo nome é obrigatório!");
+            //}
+
+            //if (usuario.Senha != usuario.ConfirmacaoSenha)
+            //{
+            //    ModelState.AddModelError("", "As senhas não podem ser diferentes!");
+            //}
+
+            if (ModelState.IsValid)
+            {
+                return View("Resultado", usuario);
+            }
+
+            return View(usuario);
+        }
+
+        public IActionResult Resultado(Usuario usuario)
+        {
+            return View(usuario);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

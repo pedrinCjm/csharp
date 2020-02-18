@@ -28,14 +28,14 @@ namespace Rotas.Controllers
             return View(ultimasNoticias);
         }
 
-        public ActionResult TodasAsNoticias()
+        public ActionResult TodasAsNoticias() // action que mostra todas as notícias
         {
             return View(todasAsNoticias);
         }
 
         public ActionResult MostraNoticia(int noticiaId, string titulo, string categoria)
         {
-            return View(todasAsNoticias.FirstOrDefault(x => x.NoticiaId == noticiaId));
+            return View(todasAsNoticias.FirstOrDefault(x => x.NoticiaId == noticiaId)); // exibe todas as notícias com o ID relacionado
         }
 
         public ActionResult MostraCategoria(string categoria)

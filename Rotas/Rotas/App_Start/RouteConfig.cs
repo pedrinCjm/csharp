@@ -13,21 +13,21 @@ namespace Rotas
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
-            routes.MapRoute(
-                name:"Todas as Noticias",
-                url:"noticias/",
-                defaults:new { controller = "Home", action= "TodasAsNoticias" }
+            routes.MapRoute( //cria um link para uma página mostrando todas as notícias
+                name:"Todas as Noticias", // um nome qualquer
+                url:"noticias/", // a url de acesso
+                defaults:new { controller = "Home", action= "TodasAsNoticias" } // a action que será chamada e a pág onde ela se encontra
                 );
 
 
-            routes.MapRoute(
+            routes.MapRoute( // cria um link mas categorias de notícias
                 name: "Categoria Especifica",
-                url: "noticias/{categoria}",
+                url: "noticias/{categoria}", // a palavra categoria sera substituída pela nome da categoria - as categorias são obtidas na home
                 defaults: new { controller = "Home", action = "MostraCategoria" }
                 );
 
 
-            routes.MapRoute(
+            routes.MapRoute( // cria um link direto para as noticias pelo nome delas - isso ajuda o marketing da pág
                 name: "Mostra Noticia",
                 url: "noticias/{categoria}/{titulo}-{noticiaId}",
                 defaults: new { controller = "Home", action = "MostraNoticia" }

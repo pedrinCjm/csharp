@@ -11,7 +11,7 @@
 <body>
     <div class="container">
 
-        @RenderPage("~/Views/Shared/_Topo.cshtml")
+        @RenderPage("~/Views/Shared/_Topo.cshtml") <!-- Adiciona parte na página. Neste caso o topo dela-->
 
         
             @RenderBody()
@@ -22,7 +22,7 @@
             }
             else
             {
-                @Html.Partial("_Rodape")
+                @Html.Partial("_Rodape") <!-- executa somente se não houver uma seção chamada rodapé na página -->
             }
 
         

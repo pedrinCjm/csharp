@@ -25,6 +25,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -169,9 +170,15 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Home\Controllers\Home2Controller.cs" />
+    <Compile Include="Areas\Home\HomeAreaRegistration.cs" />
     <Compile Include="Areas\Professor\Controllers\HomeController.cs" />
     <Compile Include="Areas\Professor\ProfessorAreaRegistration.cs" />
+    <Compile Include="Areas\Teste\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Teste\TesteAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\DefaultController.cs" />
+    <Compile Include="Controllers\Home2Controller.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
@@ -199,6 +206,11 @@
     <Content Include="Areas\Professor\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Professor\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Professor\Views\Home\Index.cshtml" />
+    <Content Include="Areas\Teste\Views\web.config" />
+    <Content Include="Areas\Teste\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Teste\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Teste\Views\Home\Index.cshtml" />
+    <Content Include="Areas\Home\Views\web.config" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -249,7 +261,13 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Models\" />
+    <Folder Include="Areas\Home\Data\" />
+    <Folder Include="Areas\Home\Views\Home2\" />
+    <Folder Include="Areas\Home\Views\Shared\" />
     <Folder Include="Areas\Professor\Models\" />
+    <Folder Include="Areas\Teste\Data\" />
+    <Folder Include="Views\Default\" />
+    <Folder Include="Views\Home2\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

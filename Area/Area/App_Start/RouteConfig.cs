@@ -16,7 +16,9 @@ namespace Area
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional },
+                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }, // possibilita o acesso direto 
+                                                                                                     // a uma determinada página
+                                                                                                     // sem ter que digitar Home primeiro
                 namespaces: new[] {"Area.Controllers"}
                 );
         }

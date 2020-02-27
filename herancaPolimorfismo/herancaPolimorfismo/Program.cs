@@ -34,7 +34,7 @@ namespace herancaPolimorfismo
                 }
                 else
                 {
-                    list.Add(new Colaborador(i, nome, horas, valorHora));
+                    list.Add(new ColaboradorFundep(i, nome, horas, valorHora));
                 }
             }
 

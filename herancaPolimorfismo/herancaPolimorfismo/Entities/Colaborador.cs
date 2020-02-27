@@ -4,7 +4,7 @@ using System.Text;
 
 namespace herancaPolimorfismo.Entities
 {
-    class Colaborador
+    abstract class Colaborador
     {
         public int ID { get; set; }
         public string Nome { get; set; }

@@ -17,7 +17,7 @@ namespace herancaPolimorfismo.Entities
 
         public override double getPagamento()
         {
-            return base.getPagamento() + 1.1 * CustoAdicional;
+            return (ValorHora * Horas) + 1.1 * CustoAdicional;
         }
     }
 }

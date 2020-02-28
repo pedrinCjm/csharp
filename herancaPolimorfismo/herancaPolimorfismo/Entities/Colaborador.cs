@@ -14,15 +14,17 @@ namespace herancaPolimorfismo.Entities
         public Colaborador() { }
         public Colaborador(int id, string nome, int horas, double valorHora)
         {
+            if (valorHora < 0) // verifica se o custo da hora é negativo e lança uma exceção
+            {
+                throw new ApplicationException("O valor da hora não pode ser negativo");
+            }
+
             ID = id;
             Nome = nome;
             Horas = horas;
             ValorHora = valorHora;
         }
 
-        public virtual double getPagamento()
-        {
-            return ValorHora * Horas;
-        }
+        public abstract double getPagamento();
     }
 }

@@ -11,32 +11,56 @@ namespace herancaPolimorfismo
         {
             List<Colaborador> list = new List<Colaborador>();
 
-            Console.Write("Informe o número de colaboradores no projeto: ");
-            int n = int.Parse(Console.ReadLine());
+            int n = 0;
 
-            for (int i = 1; i <= n; i++)
+            try
             {
-                Console.WriteLine($"Colaborador {i}: ");
-                Console.Write("Terceirizado (s/n)? ");
-                char tipo = char.Parse(Console.ReadLine());
-                Console.Write("Nome: ");
-                string nome = Console.ReadLine();
-                Console.Write("Horas trabalhadas: ");
-                int horas = int.Parse(Console.ReadLine());
-                Console.Write("Valor da hora: ");
-                double valorHora = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
+                Console.Write("Informe o número de colaboradores no projeto: ");
+                n = int.Parse(Console.ReadLine());
+            }
+            catch (FormatException e)
+            {
+                Console.WriteLine("O valor deve ser um inteiro!");
+                Console.Write("Informe o número de colaboradores no projeto: ");
+                n = int.Parse(Console.ReadLine());
+            }
+            finally // executa esse bloco mesmo se encontrar uma exceção. Pode ser usado pra fechar um BD por exemplo
+            {
+                Console.WriteLine();
+                Console.WriteLine("--------------------------------");
+            }
 
-                if (tipo == 's')
+            try
+            {
+                for (int i = 1; i <= n; i++)
                 {
-                    Console.Write("Custo adicional: ");
-                    double custoAdicional = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
-                    list.Add(new ColaboradorTerceirizado(i, nome, horas, valorHora, custoAdicional));
-                }
-                else
-                {
-                    list.Add(new ColaboradorFundep(i, nome, horas, valorHora));
+                    Console.WriteLine($"Colaborador {i}: ");
+                    Console.Write("Terceirizado (s/n)? ");
+                    char tipo = char.Parse(Console.ReadLine());
+                    Console.Write("Nome: ");
+                    string nome = Console.ReadLine();
+                    Console.Write("Horas trabalhadas: ");
+                    int horas = int.Parse(Console.ReadLine());
+                    Console.Write("Valor da hora: ");
+                    double valorHora = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
+
+                    if (tipo == 's')
+                    {
+                        Console.Write("Custo adicional: ");
+                        double custoAdicional = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
+                        list.Add(new ColaboradorTerceirizado(i, nome, horas, valorHora, custoAdicional));
+                    }
+                    else
+                    {
+                        list.Add(new ColaboradorFundep(i, nome, horas, valorHora));
+                    }
                 }
             }
+            catch (Exception e)
+            {
+                Console.WriteLine("Error:" + e.Message);
+            }
+
 
             Console.WriteLine();
             Console.WriteLine("Custo do projeto: ");

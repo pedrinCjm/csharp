@@ -22,10 +22,32 @@ namespace tabuleiro
             return pecas[linha, coluna];
         }
 
+        public Peca getPeca(Posicao posicao)
+        {
+            return pecas[posicao.Linha, posicao.Coluna];
+        }
+
         public void setPeca(Peca peca, Posicao posicao)
         {
-            pecas[posicao.Linha, posicao.Coluna] = peca;
-            peca.posicao = posicao;
+            if (posicao.Linha<0 || posicao.Linha>linhas || posicao.Coluna<0 || posicao.Coluna>colunas)
+            {
+                // posição não existe no tabuleiro
+                //return false;
+                throw new ApplicationException("A posição não está nos limites do tabuleiro");
+            }
+            else if (getPeca(posicao) != null)
+            {
+                // encontrou outra peça na posição
+                //return false;
+                throw new ApplicationException("A posição já está ocupada");
+            }
+            else
+            {
+                // tudo certo com a posição, pode gravar
+                pecas[posicao.Linha, posicao.Coluna] = peca;
+                peca.posicao = posicao;
+            }
+            //return true;
         }
     }
 }

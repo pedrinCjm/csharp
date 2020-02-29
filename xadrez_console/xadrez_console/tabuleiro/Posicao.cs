@@ -14,5 +14,11 @@ namespace tabuleiro
             Linha = linha;
             Coluna = coluna;
         }
+
+        public Posicao(char l, int coluna)
+        {
+            Linha = 8 - coluna;
+            Coluna = l - 'a';
+        }
     }
 }

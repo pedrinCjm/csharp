@@ -9,7 +9,7 @@ namespace tabuleiro
     {
         public int linhas { get; set; }
         public int colunas { get; set; }
-        private Peca[,] pecas;
+        public Peca[,] pecas { get; set; }
 
         public Tabuleiro(int linhas, int colunas)
         {
@@ -45,13 +45,11 @@ namespace tabuleiro
             if (posicaoFinal.Linha<0 || posicaoFinal.Linha>linhas || posicaoFinal.Coluna<0 || posicaoFinal.Coluna>colunas)
             {
                 // posição não existe no tabuleiro
-                //return false;
                 throw new ApplicationException("A posição não está nos limites do tabuleiro");
             }
             else if (pecaRemovida != null && pecaRemovida.cor == pecaMovida.cor)
             {
                 // encontrou outra peça na posição
-                //return false;
                 throw new ApplicationException("A posição já está ocupada");
             }
             else if (pecaRemovida != null && pecaRemovida.cor != pecaMovida.cor)
@@ -85,58 +83,6 @@ namespace tabuleiro
                 pecas[posicao.Linha, posicao.Coluna] = null;
             }
             return peca;
-        }
-
-        public void startTabChess()
-        {
-            Cor cor = Cor.Branca;
-            Peca peca = new Pawns(cor);
-
-            for (int i = 0; i < 8; i++)
-            {
-                for (int j = 0; j < 8; j++)
-                {
-                    if (i == 7 || i == 0)
-                    {
-                        if (j == 0 || j == 7)
-                        {
-                            peca = new Rooks(cor);
-                        }
-                        else if (j == 1 || j == 6)
-                        {
-                            peca = new Horse(cor);
-                        }
-                        else if (j == 2 || j == 5)
-                        {
-                            peca = new Bishops(cor);
-                        }
-                        else if (j == 3)
-                        {
-                            peca = new Queen(cor);
-                        }
-                        else
-                        {
-                            peca = new King(cor);
-                        }
-                    }
-                    else
-                    {
-                        peca = new Pawns(cor);
-                    }
-
-                    pecas[i, j] = peca;
-                    peca.posicao = new Position(i, j);
-
-                    if (j==7)
-                    {
-                        if (i == 1)
-                        {
-                            cor = Cor.Preta;
-                            i = 5;
-                        }
-                    }
-                }
-            }
         }
     }
 }

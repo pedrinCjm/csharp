@@ -17,5 +17,7 @@ namespace tabuleiro
             this.cor = cor;
             this.qtdeMovimentos = 0;
         }
+
+        public abstract List<Position> movimentosPossiveis(Position position, Tabuleiro tabuleiro);
     }
 }

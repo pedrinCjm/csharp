@@ -3,13 +3,13 @@ using tabuleiro;
 
 namespace xadrez
 {
-    class Bishops : Peca
+    class MarcaMovimento : Peca
     {
-        public Bishops(Cor cor) : base(cor) { }
+        public MarcaMovimento(Cor cor) : base(cor) { }
 
         public override string ToString()
         {
-            return "B";
+            return "X";
         }
 
         public override List<Position> movimentosPossiveis(Position position, Tabuleiro tabuleiro)

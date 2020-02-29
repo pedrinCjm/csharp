@@ -48,9 +48,14 @@ namespace xadrez_console
                             impressao = impressao + "\u001B[47m \u001B[31m";
 
                         }
-                        else
+                        else if (tabuleiro.getPeca(i, j).cor == Cor.Branca)
                         {
                             impressao = impressao + "\u001B[44m \u001B[30m";
+                        }
+                        else if (tabuleiro.getPeca(i, j).cor == Cor.Amarelo)
+                        {
+                            impressao = impressao + "\u001B[43m \u001B[33m";
+                            
                         }
                         impressao = impressao + $"{tabuleiro.getPeca(i, j)}";
                         impressao = impressao + "\u001B[40m \u001B[37m";

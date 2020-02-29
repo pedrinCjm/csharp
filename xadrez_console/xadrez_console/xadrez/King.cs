@@ -1,4 +1,5 @@
-﻿using tabuleiro;
+﻿using System.Collections.Generic;
+using tabuleiro;
 
 namespace xadrez
 {
@@ -9,6 +10,11 @@ namespace xadrez
         public override string ToString()
         {
             return "K";
+        }
+
+        public override List<Position> movimentosPossiveis(Position position, Tabuleiro tabuleiro)
+        {
+            return null;
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using tabuleiro;
 using xadrez;
 
@@ -9,32 +10,48 @@ namespace xadrez_console
         static void Main(string[] args)
         {
             Tabuleiro tabuleiro = new Tabuleiro(8,8);
+            List<Peca> morto = new List<Peca>();
 
-            tabuleiro.setPeca(new Torre(tabuleiro, Cor.Preta), new Posicao(0,0));
-            tabuleiro.setPeca(new Torre(tabuleiro, Cor.Branca), new Posicao(3, 4));
-            tabuleiro.setPeca(new Rei(tabuleiro, Cor.Preta), new Posicao(5, 7));
+            tabuleiro.startTabChess();
 
+            Console.WriteLine("Master Chess");
+            Console.WriteLine();
             Console.WriteLine(PrintTab.imprimeTabuleiro(tabuleiro));
-
+            Console.WriteLine();
+            Console.WriteLine();
             for (;;)
             {
-                Console.Write("Digite a linha: ");
-                char linha = char.Parse(Console.ReadLine());
-                Console.Write("Digite a coluna: ");
-                int coluna = int.Parse(Console.ReadLine());
+                Console.Write("Digite a posição da peça: ");
+                string[] posicaoInicial = Console.ReadLine().Split(',');
+                char linha = char.Parse(posicaoInicial[0]);
+                int coluna = int.Parse(posicaoInicial[1]);
+
+                Console.Write("Digite a nova posição da peça: ");
+                string[] posicaoFinal = Console.ReadLine().Split(',');
+                char linhaFinal = char.Parse(posicaoFinal[0]);
+                int colunaFinal = int.Parse(posicaoFinal[1]);
+
                 try
                 {
-                    tabuleiro.setPeca(new Rei(tabuleiro, Cor.Preta), new Posicao(linha, coluna));
-                    break;
+                    Peca peca = tabuleiro.movePiece(new Position(linha, coluna), new Position(linhaFinal, colunaFinal));
+                    if (peca != null)
+                    {
+                        morto.Add(peca);
+                    }
+                    if (peca is King)
+                    {
+                        break;
+                    }
+                    
                 }
                 catch (ApplicationException e)
                 {
                     Console.WriteLine("Erro: " + e.Message);
                 }
+                Console.Clear();
+                Console.WriteLine(PrintTab.imprimeTabuleiro(tabuleiro));
+                Console.WriteLine(PrintTab.imprimeMorto(morto));
             }
-
-            Console.Clear();
-            Console.WriteLine(PrintTab.imprimeTabuleiro(tabuleiro));
         }
     }
 }

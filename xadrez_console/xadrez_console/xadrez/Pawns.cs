@@ -2,13 +2,14 @@
 
 namespace xadrez
 {
-    class Rei : Peca
+    class Pawns : Peca
     {
-        public Rei(Tabuleiro tab, Cor cor) : base (tab, cor) { }
+        public Pawns(Cor cor) : base(cor) { }
 
         public override string ToString()
         {
-            return "R";
+            return "P";
         }
     }
 }
+

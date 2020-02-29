@@ -2,14 +2,13 @@
 
 namespace xadrez
 {
-    class Torre : Peca
+    class Queen : Peca
     {
-        public Torre(Tabuleiro tab, Cor cor) : base(tab, cor) { }
+        public Queen(Cor cor) : base(cor) { }
 
         public override string ToString()
         {
-            return "T";
+            return "Q";
         }
     }
 }
-

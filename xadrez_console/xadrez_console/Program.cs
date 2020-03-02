@@ -64,6 +64,7 @@ namespace xadrez_console
                     Console.WriteLine(PrintTab.imprimeMorto(morto));
                 }
             }
+            Console.WriteLine("Game over!");
         }
     }
 }

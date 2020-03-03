@@ -1,6 +1,8 @@
 ﻿using System;
 using System.IO;
 
+
+
 namespace manipulacao_de_arquivos
 {
     class Program
@@ -8,26 +10,50 @@ namespace manipulacao_de_arquivos
         static void Main(string[] args)
         {
             Console.WriteLine("Manipulação de arquivos em C#!");
-            Console.WriteLine("02/03/2020 - Pedro Medeiros - Graduado em engenharia da computação - Ufop");
             Console.WriteLine();
+            Controller controller = null;
 
-            string sourcePath = @"D:\csharp\manipulacao_de_arquivos\manipulacao_de_arquivos\arquivos_de_teste\sourcePath.txt";
-            string targetPath = @"D:\csharp\manipulacao_de_arquivos\manipulacao_de_arquivos\arquivos_de_teste\targetPath.txt";
-
-            try
+            while (1 == 1)
             {
-                FileInfo fileInfo = new FileInfo(sourcePath); // cria uma instância do arquivo
-                fileInfo.CopyTo(targetPath); // faz uma cópia do arquivo para esse outro
+                int option = -1;
+                string sourcePath = "";
 
-                string[] lines = File.ReadAllLines(sourcePath);
-                foreach(string line in lines)
+                Console.WriteLine($"Digite: \n" +
+                                   "1 - Para copiar o arquivo do exemplo.\n" +
+                                   "2 - Para informar o caminho do arquivo a ser copiado.\n" +
+                                   "3 - Para ler o arquivo de origem.\n" +
+                                   "4 - Para informar o caminho do arquivo a ser lido.\n" + 
+                                   "5 - Para ler o arquivo com ReadAllLines\n" + 
+                                   "0 - Para sair");
+                option = int.Parse(Console.ReadLine());
+
+                if (option == 2 || option == 4)
                 {
-                    Console.WriteLine(line);
+                    Console.Write("Informe o caminho completo do arquivo:");
+                    sourcePath = Console.ReadLine();
                 }
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("Error: " + e.Message);
+
+                if (option > 0 && option < 6)
+                {
+                    Console.Clear();
+                    controller = new Controller(option, sourcePath);
+                    Console.WriteLine();
+                }
+
+                else if (option == 0) 
+                { 
+                    Console.Clear(); 
+                    Console.WriteLine("Fim\n\n"); 
+                    Console.WriteLine("02/03/2020 - Pedro Medeiros - Graduado em engenharia da computação - Ufop\n\n"); 
+                    break; 
+                }
+                
+                else 
+                {
+                    Console.Clear();
+                    Console.WriteLine("Opção inválida");
+                    Console.WriteLine();
+                }
             }
         }
     }

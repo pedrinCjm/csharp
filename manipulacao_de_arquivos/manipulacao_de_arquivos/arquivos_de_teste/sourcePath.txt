@@ -1,1 +1,4 @@
-Conteúdo encontrado no arquivo de texto!
+Conteúdo encontrado no arquivo de texto para teste!
+Segunda linha do arquivo de texto para teste!
+Terceira linha do arquivo de texto para teste!
+Fim do arquivo de texto para teste!

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Text;
 
 namespace manipulacao_de_arquivos
 {
@@ -9,6 +8,9 @@ namespace manipulacao_de_arquivos
     {
         public static void lerSemFileStream(string sourcePath)
         {
+            Console.WriteLine("Tipo de leitura: StreamReader - Fechamento manual");
+            Console.WriteLine();
+
             if (sourcePath.Equals(""))
             {
                 sourcePath = @"D:\csharp\manipulacao_de_arquivos\manipulacao_de_arquivos\arquivos_de_teste\sourcePath.txt";
@@ -43,6 +45,9 @@ namespace manipulacao_de_arquivos
 
         public static void lerArquivoComReadAllLines(string sourcePath)
         {
+            Console.WriteLine("Tipo de leitura: File.ReadAllLines");
+            Console.WriteLine();
+
             if (sourcePath.Equals(""))
             {
                 sourcePath = @"D:\csharp\manipulacao_de_arquivos\manipulacao_de_arquivos\arquivos_de_teste\sourcePath.txt";
@@ -55,6 +60,36 @@ namespace manipulacao_de_arquivos
                 foreach (string line in lines)
                 {
                     Console.WriteLine(line);
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Error: " + e.Message);
+            }
+        }
+
+        public static void lerComFileStreamComFechamentoAutomatico(string sourcePath)
+        {
+            Console.WriteLine("Tipo de leitura: FileStream e StreamReader - Fechamento automático");
+            Console.WriteLine();
+
+            if (sourcePath.Equals(""))
+            {
+                sourcePath = @"D:\csharp\manipulacao_de_arquivos\manipulacao_de_arquivos\arquivos_de_teste\sourcePath.txt";
+            }
+
+            try
+            {
+                using (FileStream fs = new FileStream(sourcePath, FileMode.Open))
+                {
+                    using (StreamReader sr = new StreamReader(fs))
+                    {
+                        while (!sr.EndOfStream)
+                        {
+                            string line = sr.ReadLine();
+                            Console.WriteLine(line);
+                        }
+                    }
                 }
             }
             catch (Exception e)

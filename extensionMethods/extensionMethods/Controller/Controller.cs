@@ -1,0 +1,6 @@
+﻿namespace extensionMethods
+{
+    class Controller
+    {
+    }
+}

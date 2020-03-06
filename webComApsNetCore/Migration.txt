@@ -1,0 +1,11 @@
+Migration:
+Install-Package Pomelo.EntityFrameworkCore.MySql -Version 2.1.1
+Add-Migration Initial
+Update-DataBase
+
+
+Connection:
+//mySql
+"webComApsNetCoreContext": "server=localhost;userid=developer;password=1234;database=firstDB"
+//sqlServer
+//"webComApsNetCoreContext": "Server=(localdb)\\mssqllocaldb;Database=webComApsNetCoreContext-a0cf2f42-7204-48d4-8860-f147b5a14ba3;Trusted_Connection=True;MultipleActiveResultSets=true"

@@ -2,7 +2,7 @@
 {
     public class Departaments
     {
-        public int pubint_id { get; set; }
+        public int Id { get; set; }
         public string pubint_nomeDepartament { get; set; }
     }
 }

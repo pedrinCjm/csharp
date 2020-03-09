@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using SalesWebMvc.Models;
 using webComApsNetCore.Data;
 using webComApsNetCore.Models;
 
@@ -22,7 +23,7 @@ namespace webComApsNetCore.Controllers
         // GET: Departaments
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Departaments.ToListAsync());
+            return View(await _context.Department.ToListAsync());
         }
 
         // GET: Departaments/Details/5
@@ -33,7 +34,7 @@ namespace webComApsNetCore.Controllers
                 return NotFound();
             }
 
-            var departaments = await _context.Departaments
+            var departaments = await _context.Department
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (departaments == null)
             {
@@ -86,7 +87,7 @@ namespace webComApsNetCore.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,pubint_nomeDepartament")] Departaments departaments)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,pubint_nomeDepartament")] Department departaments)
         {
             if (id != departaments.Id)
             {

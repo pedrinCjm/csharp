@@ -5,17 +5,12 @@ using System.Threading.Tasks;
 
 namespace webComApsNetCore.Models
 {
-    public class Department
+    public class Empresa
     {
         public int Id { get; set; }
 
         public string Nome { get; set; }
 
-        public Department() { }
-        public Department(int id, string nome)
-        {
-            Id = id;
-            Nome = nome;
-        }
+        public ICollection<Department> Departamentos { get; set; } = new List<Department>();
     }
 }

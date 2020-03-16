@@ -15,5 +15,7 @@ namespace webComApsNetCore.Data
         }
 
         public DbSet<webComApsNetCore.Models.Department> Department { get; set; }
+
+        public DbSet<webComApsNetCore.Models.Empresa> Empresa { get; set; }
     }
 }

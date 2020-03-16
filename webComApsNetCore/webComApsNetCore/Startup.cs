@@ -39,14 +39,17 @@ namespace webComApsNetCore
             services.AddDbContext<webComApsNetCoreContext>(options =>
                         options.UseMySql(Configuration.GetConnectionString("webComApsNetCoreContext"), builder =>
                         builder.MigrationsAssembly("webComApsNetCore")));
+
+            services.AddScoped<SeendingService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, SeendingService seendingService)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                seendingService.Seed();
             }
             else
             {

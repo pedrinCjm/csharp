@@ -28,7 +28,8 @@ namespace webComApsNetCore.Data
             departments.Add(d1); departments.Add(d2);
 
             Empresa e1 = new Empresa { Id = 1, Nome = "Empresa1", Departamentos = departments};
-
+            Empresa e2 = new Empresa { Id = 2, Nome = "Empresa2", Departamentos = departments };
+            //
             _context.Department.AddRange(d1, d2);
 
             _context.Empresa.AddRange(e1);

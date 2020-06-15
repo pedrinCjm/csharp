@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
-using webComApsNetCore.Models;
+﻿using Microsoft.EntityFrameworkCore;
 
 namespace webComApsNetCore.Data
 {
@@ -17,5 +12,13 @@ namespace webComApsNetCore.Data
         public DbSet<webComApsNetCore.Models.Department> Department { get; set; }
 
         public DbSet<webComApsNetCore.Models.Empresa> Empresa { get; set; }
+
+        public DbSet<webComApsNetCore.Models.Livros> Livros { get; set; }
+
+        public DbSet<webComApsNetCore.Models.Carro> Carro { get; set; }
+
+        public DbSet<webComApsNetCore.Models.CategoriaLivro> Categoria { get; set; }
+
+        public DbSet<webComApsNetCore.Models.Generico> Generico { get; set; }
     }
 }

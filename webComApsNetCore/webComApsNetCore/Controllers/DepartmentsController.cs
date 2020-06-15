@@ -7,6 +7,9 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using webComApsNetCore.Data;
 using webComApsNetCore.Models;
+using System;
+using System.IO;
+using System.Text;
 
 namespace webComApsNetCore.Controllers
 {
@@ -20,9 +23,31 @@ namespace webComApsNetCore.Controllers
         }
 
         // GET: Departments
-        public async Task<IActionResult> Index()
+        [HttpGet]
+        public async Task<IActionResult> Index(DateTime? minDate, DateTime? maxDate, string nome)
         {
-            return View(await _context.Department.ToListAsync());
+            var result = from obj in _context.Department select obj;
+            if (!minDate.HasValue)
+            {
+                minDate = new DateTime(DateTime.Now.Year, 1, 1);
+            }
+            if (!maxDate.HasValue)
+            {
+                maxDate = DateTime.Now;
+            }
+            if (nome != null)
+            {
+                result = result.Where(x => x.Nome.Contains(nome));
+            }
+            ViewData["minDate"] = minDate.Value.ToString("yyyy-MM-dd");
+            ViewData["maxDate"] = maxDate.Value.ToString("yyyy-MM-dd");
+            ViewData["nome"] = nome;
+
+            Department dep = new Department();
+
+            dep.CreateExcel();
+
+            return View(await result.ToListAsync());
         }
 
         // GET: Departments/Details/5
@@ -46,6 +71,7 @@ namespace webComApsNetCore.Controllers
         // GET: Departments/Create
         public IActionResult Create()
         {
+
             return View();
         }
 
@@ -62,7 +88,7 @@ namespace webComApsNetCore.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(department);
+            return View(department); // caso os dados passados não forem validos, retorna a View passando o objeto
         }
 
         // GET: Departments/Edit/5

@@ -1,0 +1,82 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Theme Made By www.w3schools.com -->
+    <title>Bootstrap Theme Company Page</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="~/fontawesome-free/css/all.min.css" />
+    <link rel="stylesheet" href="~/twitter-bootstrap/css/bootstrap.css" />
+    <link rel="stylesheet" href="~/css/extra.css" />
+</head>
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
+
+    <nav class="navbar fixed-top navbar-default">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Logo</a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-static-top">
+                    @*<li><a href="#about">ABOUT</a></li>
+        <li><a href="#services">SERVICES</a></li>
+        <li><a href="#portfolio">PORTFOLIO</a></li>
+        <li><a href="#pricing">PRICING</a></li>
+        <li><a href="#contact">CONTACT</a></li>*@
+                    <li><a asp-area="" asp-controller="Home" asp-action="Partidas">Partidas</a></li>
+                    <li>@Html.ActionLink("Notificações", "Notificacoes", "Home")</li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="menu3Dropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Jogos
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="menu3Dropdown">
+                            <a class="dropdown-item" href="/jogos/ListaJogos">Jogos</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="/jogos/ListaTiposJogos">Tipos de Jogos</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="/jogos/ListaJogadores">Jogadores</a>
+                        </div>
+                    </li>
+
+                    <partial name="_LoginPartial" />
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div id="home" class="jumbotron text-center">
+        <partial name="_CookieConsentPartial" />
+    </div>
+
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; 2020 - ProjetoComSenha</p>
+        </footer>
+    </div>
+
+    @RenderSection("Scripts", required: false)
+
+    <script>
+        var url_api = '@ProjetoComSenha.Common.Api';
+    </script>
+
+    @*<script src="~/datatables/js/dataTables.bootstrap.min.js"></script>*@
+    @*<script src="~/datatables/js/jquery.dataTables.min.js"></script>*@
+    @*<script src="~/datatables/datatable/datatables.min.js"></script>*@
+    <script src="~/datatables/dataTablesAntigo/datatables.js"></script>
+
+</body>
+</html>

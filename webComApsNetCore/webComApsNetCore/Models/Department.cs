@@ -1,7 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using System.IO;
+using System.Text;
+using System.Data;
 
 namespace webComApsNetCore.Models
 {
@@ -9,6 +13,7 @@ namespace webComApsNetCore.Models
     {
         public int Id { get; set; }
 
+        [Required(ErrorMessage = "{0} é obrigatório")]
         public string Nome { get; set; }
 
         public Department() { }
@@ -16,6 +21,31 @@ namespace webComApsNetCore.Models
         {
             Id = id;
             Nome = nome;
+        }
+
+        public void CreateExcel()
+        {
+            var lines = new List<string>();
+
+            //string[] columnNames = dt.Columns
+            //    .Cast<DataColumn>()
+            //    .Select(column => column.ColumnName)
+            //    .ToArray();
+
+            //var header = string.Join(",", columnNames.Select(name => $"\"{name}\""));
+            //lines.Add(header);
+
+            //var valueLines = dt.AsEnumerable()
+            //    .Select(row => string.Join(",", row.ItemArray.Select(val => $"\"{val}\"")));
+
+            for (int i=0;i<10;i++)
+            {
+                var valueLines = new List<string>();
+                valueLines.Add($"James  Miles   james@abcd.com  9876543210  email");
+                lines.AddRange(valueLines);
+            }
+
+            File.WriteAllLines("excel.csv", lines);
         }
     }
 }

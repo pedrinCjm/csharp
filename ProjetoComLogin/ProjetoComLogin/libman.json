@@ -1,0 +1,27 @@
+{
+  "version": "1.0",
+  "defaultProvider": "cdnjs",
+  "defaultDestination": "wwwroot/pedrolib/",
+  "libraries": [
+    {
+      "library": "angular-ui@0.4.0"
+    },
+    {
+      "library": "fullcalendar@4.2.0"
+    },
+    {
+      "library": "datatables@1.10.20"
+    },
+    {
+      "library": "jqueryui@1.12.1"
+    },
+    {
+      "destination": "wwwroot/pedrolib/bootstrap4/",
+      "library": "twitter-bootstrap@4.5.0"
+    },
+    {
+      "destination": "wwwroot/pedrolib/jquery/",
+      "library": "jquery@3.5.1"
+    }
+  ]
+}

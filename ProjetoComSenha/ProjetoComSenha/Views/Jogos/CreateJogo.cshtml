@@ -1,0 +1,42 @@
+﻿@model ProjetoComSenha.Models.JogoViewModel
+
+@{
+    ViewData["Title"] = "CreateJogo";
+}
+
+<h2>CreateJogo</h2>
+
+<h4>Jogo</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="CreateJogo">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Jogo.NoJogo" class="control-label"></label>
+                <input asp-for="Jogo.NoJogo" class="form-control" />
+                <span asp-validation-for="Jogo.NoJogo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Jogo.DsJogo" class="control-label"></label>
+                <input asp-for="Jogo.DsJogo" class="form-control" />
+                <span asp-validation-for="Jogo.DsJogo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Jogo.TipoJogoId" class="control-label"></label>
+                <select asp-for="Jogo.TipoJogoId" class="form-control" asp-items="@(new SelectList(Model.TipoJogo, "TipoJogoId", "NoTipoJogo"))">
+                    <option value="0">-- Selecione --</option>
+                </select>
+                <span asp-validation-for="Jogo.TipoJogoId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

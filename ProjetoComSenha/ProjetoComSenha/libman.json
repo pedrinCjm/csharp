@@ -1,0 +1,42 @@
+{
+  "version": "1.0",
+  "defaultProvider": "cdnjs",
+  "libraries": [
+    {
+      "library": "jquery@3.5.1",
+      "destination": "wwwroot/jquery"
+    },
+    {
+      "library": "jqueryui@1.12.1",
+      "destination": "wwwroot/jqueryui/"
+    },
+    {
+      "library": "twitter-bootstrap@4.5.0",
+      "destination": "wwwroot/twitter-bootstrap/"
+    },
+    {
+      "library": "datatable@2.0.1",
+      "destination": "wwwroot/datatable/"
+    },
+    {
+      "library": "angular-ui@0.4.0",
+      "destination": "wwwroot/angular/"
+    },
+    {
+      "library": "fullcalendar@4.2.0",
+      "destination": "wwwroot/fullcalendar/"
+    },
+    {
+      "library": "datatables@1.10.20",
+      "destination": "wwwroot/datatables/"
+    },
+    {
+      "library": "adapterjs@0.15.4",
+      "destination": "wwwroot/adapterjs/"
+    },
+    {
+      "library": "fontawesome-iconpicker@3.2.0",
+      "destination": "wwwroot/fontawesome-iconpicker/"
+    }
+  ]
+}

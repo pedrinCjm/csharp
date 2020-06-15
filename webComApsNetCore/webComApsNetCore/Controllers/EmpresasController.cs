@@ -12,7 +12,7 @@ namespace webComApsNetCore.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class EmpresasController : ControllerBase
+    public class EmpresasController : Controller
     {
         private readonly webComApsNetCoreContext _context;
 
@@ -21,11 +21,10 @@ namespace webComApsNetCore.Controllers
             _context = context;
         }
 
-        // GET: api/Empresas
         [HttpGet]
-        public IEnumerable<Empresa> GetEmpresa()
+        public async Task<IActionResult> Index()
         {
-            return _context.Empresa;
+            return View(await _context.Empresa.ToListAsync());
         }
 
         // GET: api/Empresas/5

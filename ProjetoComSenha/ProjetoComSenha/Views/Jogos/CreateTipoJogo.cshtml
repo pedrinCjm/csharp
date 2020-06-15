@@ -1,0 +1,40 @@
+﻿@model ProjetoComSenha.Models.TipoJogo
+
+@{
+    ViewData["Title"] = "CreateTipoJogo";
+}
+
+<h2>CreateTipoJogo</h2>
+
+<h4>TipoJogo</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="CreateTipoJogo">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="NoTipoJogo" class="control-label"></label>
+                <input asp-for="NoTipoJogo" class="form-control" />
+                <span asp-validation-for="NoTipoJogo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DsTipoJogo" class="control-label"></label>
+                <input asp-for="DsTipoJogo" class="form-control" />
+                <span asp-validation-for="DsTipoJogo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="QtdMaxJogadores" class="control-label"></label>
+                <input asp-for="QtdMaxJogadores" class="form-control" />
+                <span asp-validation-for="QtdMaxJogadores" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

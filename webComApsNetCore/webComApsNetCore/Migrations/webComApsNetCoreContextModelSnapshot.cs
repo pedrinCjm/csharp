@@ -17,6 +17,32 @@ namespace webComApsNetCore.Migrations
                 .HasAnnotation("ProductVersion", "2.1.14-servicing-32113")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
+            modelBuilder.Entity("webComApsNetCore.Models.Carro", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("cor");
+
+                    b.Property<int>("placa");
+
+                    b.HasKey("id");
+
+                    b.ToTable("Carro");
+                });
+
+            modelBuilder.Entity("webComApsNetCore.Models.CategoriaLivro", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Nome");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Categoria");
+                });
+
             modelBuilder.Entity("webComApsNetCore.Models.Department", b =>
                 {
                     b.Property<int>("Id")
@@ -24,7 +50,8 @@ namespace webComApsNetCore.Migrations
 
                     b.Property<int?>("EmpresaId");
 
-                    b.Property<string>("Nome");
+                    b.Property<string>("Nome")
+                        .IsRequired();
 
                     b.HasKey("Id");
 
@@ -45,11 +72,34 @@ namespace webComApsNetCore.Migrations
                     b.ToTable("Empresa");
                 });
 
+            modelBuilder.Entity("webComApsNetCore.Models.Livros", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int?>("CategoriaLivroId");
+
+                    b.Property<string>("Nome");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CategoriaLivroId");
+
+                    b.ToTable("Livros");
+                });
+
             modelBuilder.Entity("webComApsNetCore.Models.Department", b =>
                 {
                     b.HasOne("webComApsNetCore.Models.Empresa")
                         .WithMany("Departamentos")
                         .HasForeignKey("EmpresaId");
+                });
+
+            modelBuilder.Entity("webComApsNetCore.Models.Livros", b =>
+                {
+                    b.HasOne("webComApsNetCore.Models.CategoriaLivro")
+                        .WithMany("Livros")
+                        .HasForeignKey("CategoriaLivroId");
                 });
 #pragma warning restore 612, 618
         }

@@ -1,0 +1,28 @@
+﻿<!doctype html>
+<!--[if lt IE 8]><html class="no-js lt-ie8"> <![endif]-->
+<html class="no-js">
+
+    @await Html.PartialAsync("PartialViews/_header")
+
+<body>
+    <!--[if lt IE 9]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+    @await Html.PartialAsync("PartialViews/_navbarTop")
+    <!-- / page-navbar -->
+    <!-- #wrapper -->
+    <div id="wrapper">
+        @await Html.PartialAsync("PartialViews/_navbarLeft")
+
+        @await Html.PartialAsync("PartialViews/_navbarRight")
+
+        @RenderBody()
+    </div>
+    <!-- / #wrapper -->
+
+    @await Html.PartialAsync("PartialViews/_footer")
+
+    @await Html.PartialAsync("PartialViews/_scriptsLayout")
+
+</body>
+</html>

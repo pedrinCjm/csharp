@@ -1,0 +1,30 @@
+﻿@model PMC.ProjectTwo.Models.Carro
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Carro</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.placa)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.placa)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.cor)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.cor)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

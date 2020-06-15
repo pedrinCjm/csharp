@@ -1,0 +1,41 @@
+﻿@model IEnumerable<ProjetoComSenha.Models.Jogador>
+
+@{
+    ViewData["Title"] = "ListaJogadores";
+}
+
+<h2>ListaJogadores</h2>
+
+<p>
+    <a asp-action="CreateJogador">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.NoJogador)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NickJogador)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NoJogador)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NickJogador)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.JogadorId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.JogadorId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.JogadorId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

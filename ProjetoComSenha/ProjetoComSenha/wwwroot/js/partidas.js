@@ -1,10 +1,7 @@
 ﻿function obtemPartidas() {
-    console.log("inicioNovo");
-    console.log(url_api);
-    console.log("oi");
     $.ajax({
         type: "GET",
-        url: `https://localhost:44385/api/Partidas/listaPartidas`,
+        url: `Partidas/listaPartidas`,
         headers: {
             'Content-Type': 'application/json'
         },
@@ -16,8 +13,6 @@
             console.log(errorThrown)
         }
     });
-    console.log("fim");
-    console.log("oi");
 }
 
 function personalizaTabela() {
@@ -36,4 +31,24 @@ function personalizaTabela() {
             url: "/vendor/datatables/Portuguese-Brasil.json"
         }
     });
+}
+
+function obtemDadosJogo() {
+    console.log("oi");
+    $.ajax({
+        type: "GET",
+        url: `CarregaModal`,
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        async: false,
+        success: function (resultado) {
+            console.log(resultado);
+            $("#exampleModalCenter").show();
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            console.log(errorThrown)
+        }
+    });
+    console.log("fim");
 }

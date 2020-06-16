@@ -16,6 +16,33 @@ namespace ProjetoComSenha.Controllers
 {
     public class JogosController : Controller
     {
+        public IActionResult OnGetPartial() => new PartialViewResult
+        {
+            ViewName = "_ListaJogos",
+            ViewData = ViewData,
+        };
+
+        public void CarregaModal()
+        {
+            HttpClient Http = new HttpClient();
+            //Http.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Token);
+
+            try
+            {
+                string url = ProjetoComSenha.Common.Api + "Regioes";
+
+                var response = Http.GetStringAsync(url).Result.ToString();
+
+                var model = JsonConvert.DeserializeObject<List<Regiao>>(response);
+
+                ViewBag.Regiao = new SelectList(model, dataValueField: "RegiaoId", dataTextField: "Descricao");
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public IActionResult ListaJogos()
         {
             var model = new List<JogoModelView>();

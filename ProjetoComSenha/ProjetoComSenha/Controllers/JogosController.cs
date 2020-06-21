@@ -157,9 +157,8 @@ namespace ProjetoComSenha.Controllers
                 using (var client = new HttpClient())
                 {
                     // prepara os dados para envio
-                    var serializer = new JavaScriptSerializer();
-                    var json = serializer.Serialize(jogo);
-                    var stringContent = new StringContent(json, Encoding.UTF8, "application/json");
+                    var serializer = JsonConvert.SerializeObject(jogo);
+                    var stringContent = new StringContent(serializer, Encoding.UTF8, "application/json");
 
                     //HTTP POST
                     var postTask = client.PostAsync(ProjetoComSenha.Common.Api + "Jogos", stringContent);
@@ -197,6 +196,11 @@ namespace ProjetoComSenha.Controllers
         [HttpPost]
         public IActionResult CreateTipoJogo(TipoJogo tipoJogo)
         {
+            if (!ModelState.IsValid)
+            {
+                return View(tipoJogo);
+            }
+
             try
             {
                 using (var client = new HttpClient())
@@ -232,6 +236,11 @@ namespace ProjetoComSenha.Controllers
         [HttpPost]
         public IActionResult CreateJogador(Jogador jogador)
         {
+            if (!ModelState.IsValid)
+            {
+                return View(jogador);
+            }
+
             try
             {
                 using (var client = new HttpClient())

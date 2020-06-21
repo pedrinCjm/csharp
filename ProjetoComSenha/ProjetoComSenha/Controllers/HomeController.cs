@@ -20,7 +20,10 @@ namespace ProjetoComSenha.Controllers
         {
             return View();
         }
-
+        public IActionResult Carregamento()
+        {
+            return View();
+        }
         public IActionResult About()
         {
 

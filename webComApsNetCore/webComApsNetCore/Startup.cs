@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using webComApsNetCore.Data;
+using Rotativa.AspNetCore;
 
 namespace webComApsNetCore
 {
@@ -62,6 +63,8 @@ namespace webComApsNetCore
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
+
+            RotativaConfiguration.Setup(env);
         }
     }
 }

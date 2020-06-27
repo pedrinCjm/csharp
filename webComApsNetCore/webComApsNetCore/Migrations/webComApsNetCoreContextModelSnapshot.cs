@@ -72,6 +72,24 @@ namespace webComApsNetCore.Migrations
                     b.ToTable("Empresa");
                 });
 
+            modelBuilder.Entity("webComApsNetCore.Models.Generico", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int?>("carroid");
+
+                    b.Property<int?>("departmentId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("carroid");
+
+                    b.HasIndex("departmentId");
+
+                    b.ToTable("Generico");
+                });
+
             modelBuilder.Entity("webComApsNetCore.Models.Livros", b =>
                 {
                     b.Property<int>("Id")
@@ -88,11 +106,43 @@ namespace webComApsNetCore.Migrations
                     b.ToTable("Livros");
                 });
 
+            modelBuilder.Entity("webComApsNetCore.Models.Usuario", b =>
+                {
+                    b.Property<decimal>("UsuarioId");
+
+                    b.Property<decimal>("CEP");
+
+                    b.Property<decimal>("CNPJ");
+
+                    b.Property<decimal>("CPF");
+
+                    b.Property<string>("NoUsuario");
+
+                    b.Property<decimal>("Telefone");
+
+                    b.Property<DateTime>("UsuDatNasc");
+
+                    b.HasKey("UsuarioId");
+
+                    b.ToTable("Usuario");
+                });
+
             modelBuilder.Entity("webComApsNetCore.Models.Department", b =>
                 {
                     b.HasOne("webComApsNetCore.Models.Empresa")
                         .WithMany("Departamentos")
                         .HasForeignKey("EmpresaId");
+                });
+
+            modelBuilder.Entity("webComApsNetCore.Models.Generico", b =>
+                {
+                    b.HasOne("webComApsNetCore.Models.Carro", "carro")
+                        .WithMany()
+                        .HasForeignKey("carroid");
+
+                    b.HasOne("webComApsNetCore.Models.Department", "department")
+                        .WithMany()
+                        .HasForeignKey("departmentId");
                 });
 
             modelBuilder.Entity("webComApsNetCore.Models.Livros", b =>

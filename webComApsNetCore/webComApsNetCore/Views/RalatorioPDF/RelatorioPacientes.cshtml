@@ -1,0 +1,119 @@
+﻿@model webComApsNetCore.Models.Carro
+
+@{
+    Layout = "";
+}
+
+<!doctype html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Núcleo de Ações e Pesquisa em Apoio Diagnóstico (Nupad)</title>
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="theme-color" content="#000000">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel='shortcut icon' href='~/img/favicon.png' type='image/png' />
+    <link rel="license" href="https://www.opensource.org/licenses/mit-license/">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,400,700&display=swap">
+    <link rel="stylesheet" href="~/vendor/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="~/vendor/bootstrap/bootstrap-datepicker.min.css">
+    <link rel="stylesheet" href="~/vendor/datatables/datatables.min.css">
+    <link href="~/vendor/fonts/fonts.css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="~/css/all.css">
+    <script src="https://kit.fontawesome.com/363caea9ef.js" crossorigin="anonymous"></script>
+    <script src="~/vendor/showdown/showdown.min.js"></script>
+
+    <style>
+        table {
+            border-collapse: separate;
+            border-spacing: 0px 0;
+        }
+
+
+        th, td {
+            border: 0px solid black;
+            padding: 3px;
+        }
+    </style>
+</head>
+<body style="background: url(~/img/background.jpg) no-repeat; width: 909px; height: 1335px">
+    <header>
+        <span>
+            <img src="~/img/PAPEL_TIMBRADO_TOPO.png" width="100%" />
+        </span>
+        <center><span class="ArialNarrow-titulo" style="left: 40px;bottom: 1060px;text-align: center;white-space: normal;">@Model.placa</span></center>
+    </header>
+    <article>
+        <br />
+        <address contenteditable>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.id)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.placa)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.cor)
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td id="cpf">
+                            @string.Concat(Model.id, "")
+                        </td>
+                        <td>
+                            @string.Concat(Model.placa, "")
+                        </td>
+                        <td>
+                            @string.Concat(Model.cor, "")
+                        </td>
+                    </tr>
+                    @*@foreach (var item in Model)
+        {
+            <tr>
+                <td id="cpf">
+                    @if (Model.Relatorio.Count > 0)
+                    {
+                        <p>@string.Concat(item.NumCpfsolOnLine.ToString().Substring(0, 3), ".", item.NumCpfsolOnLine.ToString().Substring(3, 3), ".", item.NumCpfsolOnLine.ToString().Substring(6, 3), "-", item.NumCpfsolOnLine.ToString().Substring(9, 2))</p>
+                    }
+                </td>
+                <td>
+                    @if (item.NomPacSolOnLine != null)
+                    {
+
+                        @Html.DisplayFor(modelItem => item.NomPacSolOnLine)
+                    }
+                </td>
+                <td id="data">
+                    @if (item.DatColSolOnLine != null)
+                    {
+                        <p>@string.Concat(item.DatColSolOnLine.ToString().Substring(6, 2), "/", item.DatColSolOnLine.ToString().Substring(4, 2), "/", item.DatColSolOnLine.ToString().Substring(0, 4))</p>
+                    }
+                </td>
+                <td id="data">
+                    @if (item.DatColSolOnLine != null)
+                    {
+                        <p>@string.Concat(item.DatHorRegSolOnLine.ToString().Substring(6, 2), "/", item.DatHorRegSolOnLine.ToString().Substring(4, 2), "/", item.DatHorRegSolOnLine.ToString().Substring(0, 4))</p>
+                    }
+                </td>
+            </tr>
+        }*@
+                </tbody>
+            </table>
+        </address>
+    </article>
+
+    <div style="position:absolute; bottom:0; width:100%;">
+        <span>
+            <img src="~/img/PAPEL_TIMBRADO_FOOTER.png" width="100%" />
+        </span>
+    </div>
+
+</body>
+</html>

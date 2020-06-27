@@ -250,5 +250,14 @@ namespace webComApsNetCore.Controllers
         {
             return _context.Carro.Any(e => e.id == id);
         }
+
+        // GET: Carros/Create
+        [HttpGet("ListaCarros")]
+        public IEnumerable<Carro> ListaCarros()
+        {
+            var carros = _context.Carro;
+
+            return carros;
+        }
     }
 }

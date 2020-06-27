@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using webComApsNetCore.Models;
 
 namespace webComApsNetCore.Data
 {
@@ -20,5 +21,7 @@ namespace webComApsNetCore.Data
         public DbSet<webComApsNetCore.Models.CategoriaLivro> Categoria { get; set; }
 
         public DbSet<webComApsNetCore.Models.Generico> Generico { get; set; }
+
+        public DbSet<webComApsNetCore.Models.Usuario> Usuario { get; set; }
     }
 }

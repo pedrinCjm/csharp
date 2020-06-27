@@ -30,7 +30,16 @@
                     <li class="nav-item"><a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
                     <li><a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Partidas">Partidas</a></li>
                     <li><a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="CreateRegiao">Região</a></li>
-                    <li><a class="nav-link text-white" asp-area="" asp-controller="Jogos" asp-action="ListaJogos">Jogos</a></li>
+                    <li class="nav-item dropdown  ">
+                        <a class="nav-link dropdown-toggle text-white" href="#" id="menu3Dropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Jogos
+                        </a>
+                        <div class="dropdown-menu animate slideIn" aria-labelledby="menu3Dropdown">
+                            <a class="nav-link text-black-50" asp-area="" asp-controller="Jogos" asp-action="ListaJogos">Lista de jogos</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="nav-link text-black-50" asp-area="" asp-controller="Relatorios" asp-action="ListaJogosRelatorio">Relatorio de jogos</a>
+                        </div>
+                    </li>
                     <li><a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Notificacoes">Notificações</a></li>
                     <li><a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="About">About</a></li>
                     <li><a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>

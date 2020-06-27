@@ -1,0 +1,58 @@
+﻿@model ICollection<webComApsNetCore.Models.Carro>
+
+@{
+    Layout = "";
+}
+
+<!doctype html>
+
+<article>
+    <br />
+    <address contenteditable>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ToList()[0].id)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ToList()[0].placa)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ToList()[0].cor)
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td id="cpf">
+                            @string.Concat(item.id, "")
+                        </td>
+                        <td>
+                            @string.Concat(item.placa, "")
+                        </td>
+                        <td>
+                            @string.Concat(item.cor, "")
+                        </td>
+                    </tr>
+                }
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td id="cpf">
+                            @string.Concat(item.id, "")
+                        </td>
+                        <td>
+                            @string.Concat(item.placa, "")
+                        </td>
+                        <td>
+                            @string.Concat(item.cor, "")
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </address>
+</article>

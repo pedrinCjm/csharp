@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Localization;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using ProjetoComSenha.Data;
+using Rotativa.AspNetCore;
 
 namespace ProjetoComSenha
 {
@@ -67,6 +68,8 @@ namespace ProjetoComSenha
             });
 
             ProjetoComSenha.Common.Api = Configuration.GetSection("Api").GetSection("Api").Value;
+
+            RotativaConfiguration.Setup(env);
         }
     }
 }

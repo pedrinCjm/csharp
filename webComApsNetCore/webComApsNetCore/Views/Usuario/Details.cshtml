@@ -1,0 +1,54 @@
+﻿@model webComApsNetCore.Models.Usuario
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Usuario</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NoUsuario)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.NoUsuario)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CPF)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CPF)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Telefone)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Telefone)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CEP)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CEP)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CNPJ)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CNPJ)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.UsuDatNasc)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.UsuDatNasc)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.UsuarioId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

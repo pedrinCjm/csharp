@@ -1,0 +1,134 @@
+﻿@model IEnumerable<ProjetoComSenha.Models.JogoModelView>
+
+@{
+    Layout = "";
+}
+
+<!doctype html>
+
+<head>
+    @*<meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Núcleo de Ações e Pesquisa em Apoio Diagnóstico (Nupad)</title>
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="theme-color" content="#000000">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel='shortcut icon' href='~/img/favicon.png' type='image/png' />
+    <link rel="license" href="https://www.opensource.org/licenses/mit-license/">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,400,700&display=swap">
+    <link rel="stylesheet" href="~/vendor/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="~/vendor/bootstrap/bootstrap-datepicker.min.css">
+    <link rel="stylesheet" href="~/vendor/datatables/datatables.min.css">
+    <link href="~/vendor/fonts/fonts.css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="~/css/all.css">
+    <script src="https://kit.fontawesome.com/363caea9ef.js" crossorigin="anonymous"></script>
+    <script src="~/vendor/showdown/showdown.min.js"></script>*@
+
+    <style>
+        table {
+            border-collapse: separate;
+            border-spacing: 0px 0;
+        }
+
+        th, td {
+            border: 0px solid black;
+            padding: 3px;
+        }
+    </style>
+</head>
+
+<section class="page-section pt-2">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="page-content pt-3">
+                    <div class="card card-shadow-sm">
+                        <div class="card-body">
+                            <table id="tabelaPrincipal" class="table">
+                                <thead>
+                                    <tr>
+                                        <th>@Html.DisplayNameFor(model => model.NoJogo)</th>
+                                        <th>@Html.DisplayNameFor(model => model.DsJogo)</th>
+                                        <th>@Html.DisplayNameFor(model => model.TipoJogo)</th>
+                                        <th>@Html.DisplayNameFor(model => model.JogadoresRegistrados)</th>
+                                        <th>@Html.DisplayNameFor(model => model.JogadoresOnline)</th>
+                                        <th>@Html.DisplayNameFor(model => model.CodigoPromocional)</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.NoJogo)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.DsJogo)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.TipoJogo.TipoJogoId)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.JogadoresRegistrados)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.JogadoresOnline)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.CodigoPromocional)
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<article>
+    <br />
+    <address contenteditable>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model.NoJogo)</th>
+                    <th>@Html.DisplayNameFor(model => model.DsJogo)</th>
+                    <th>@Html.DisplayNameFor(model => model.TipoJogo)</th>
+                    <th>@Html.DisplayNameFor(model => model.JogadoresRegistrados)</th>
+                    <th>@Html.DisplayNameFor(model => model.JogadoresOnline)</th>
+                    <th>@Html.DisplayNameFor(model => model.CodigoPromocional)</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.NoJogo)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DsJogo)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TipoJogo.TipoJogoId)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.JogadoresRegistrados)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.JogadoresOnline)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CodigoPromocional)
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </address>
+</article>

@@ -15,6 +15,7 @@
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.10" />
     <PackageReference Include="Nancy" Version="2.0.0" />
     <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="2.1.1" />
+    <PackageReference Include="Rotativa.AspNetCore" Version="1.1.1" />
   </ItemGroup>
 
   <ItemGroup>
@@ -1686,6 +1687,9 @@
     <None Include="wwwroot\fontawesome-free\webfonts\fa-regular-400.woff2" />
     <None Include="wwwroot\fontawesome-free\webfonts\fa-solid-900.svg" />
     <None Include="wwwroot\fontawesome-free\webfonts\fa-solid-900.woff2" />
+    <None Include="wwwroot\Rotativa.csproj" />
+    <None Include="wwwroot\Rotativa\wkhtmltoimage.exe" />
+    <None Include="wwwroot\Rotativa\wkhtmltopdf.exe" />
   </ItemGroup>
 
 </Project>

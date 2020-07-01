@@ -43,9 +43,11 @@ namespace ProjetoComSenha.Controllers
             }
         }
 
-        public IActionResult ListaJogos()
+        [HttpPost]
+        public IActionResult Teste(JogoModelView jogoModelView)
         {
             var model = new List<JogoModelView>();
+
             try
             {
                 var httpWebRequest = (HttpWebRequest)WebRequest.Create(ProjetoComSenha.Common.Api + "Jogos");
@@ -62,6 +64,23 @@ namespace ProjetoComSenha.Controllers
             {
                 throw e;
             }
+
+            var serializer = JsonConvert.SerializeObject(model);
+            TempData["ModelTemporario"] = serializer;
+
+            return RedirectToAction("ListaJogos");
+        }
+
+        public IActionResult ListaJogos()
+        {
+            var model = new List<JogoModelView>();
+
+            if (TempData["ModelTemporario"] != null)
+            {
+                model = JsonConvert.DeserializeObject<List<JogoModelView>>(TempData["ModelTemporario"].ToString());
+            }
+
+            TempData["ModelTemporario"] = null;
 
             return View(model);
         }

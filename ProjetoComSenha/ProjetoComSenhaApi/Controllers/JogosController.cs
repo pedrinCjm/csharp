@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using ProjetoComSenhaApi.Data;
 using ProjetoComSenhaApi.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -107,8 +108,15 @@ namespace ProjetoComSenhaApi.Controllers
                 return BadRequest(ModelState);
             }
 
-            _context.Jogo.Add(jogo);
-            await _context.SaveChangesAsync();
+            try
+            {
+                _context.Jogo.Add(jogo);
+                await _context.SaveChangesAsync();
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
 
             return CreatedAtAction("GetJogo", new { id = jogo.JogoId }, jogo);
         }

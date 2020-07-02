@@ -171,6 +171,13 @@ namespace ProjetoComSenha.Controllers
         [HttpPost]
         public IActionResult CreateJogo(Jogo jogo)
         {
+            // add [FromBody] for test using xUnit
+            // Check if it's a Form value
+            //if (Request.Body != null)
+            //{
+            //    jogo = JsonConvert.DeserializeObject<Jogo>(Request.Body.ToString());
+            //}
+
             try
             {
                 using (var client = new HttpClient())
@@ -200,6 +207,40 @@ namespace ProjetoComSenha.Controllers
             }
 
             return View();
+        }
+
+        [HttpPost]
+        public int CreateJogoVoid(Jogo jogo)
+        {
+            try
+            {
+                using (var client = new HttpClient())
+                {
+                    // prepara os dados para envio
+                    var serializer = JsonConvert.SerializeObject(jogo);
+                    var stringContent = new StringContent(serializer, Encoding.UTF8, "application/json");
+
+                    //HTTP POST
+                    var postTask = client.PostAsync(ProjetoComSenha.Common.Api + "Jogos", stringContent);
+                    postTask.Wait();
+
+                    // pega o resultado
+                    var result = postTask.Result;
+                    if (result.IsSuccessStatusCode)
+                    {
+                        return 1;
+                    }
+                }
+
+                ModelState.AddModelError(string.Empty, "Server Error. Please contact administrator.");
+
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+
+            return 0;
         }
 
         public IActionResult CreateTipoJogo()

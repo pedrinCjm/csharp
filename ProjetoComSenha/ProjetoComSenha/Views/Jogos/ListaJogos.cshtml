@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ProjetoComSenha.Models.JogoModelView>
+﻿@model ProjetoComSenha.Models.ListaJogosModelView
 
 @{
     ViewData["Title"] = "ListaJogos";
@@ -7,6 +7,7 @@
 <h2>Lista de Jogos</h2>
 
 <form method="post">
+    <input asp-for="DtInicial" type="date" />
     <input type="text" name="name" value="" />
     <button type="submit" formaction="@Url.Action("Teste")">Teste</button>
 </form>
@@ -15,64 +16,18 @@
     <a asp-action="CreateJogo">Create New</a>
 </p>
 
+<div>
+    <button onclick="carregaTabela()">Chama parcial</button>
+</div>
+
 <section class="page-section pt-2">
     <div class="container">
         <div class="row">
             <div class="col-md-12">
                 <div class="page-content pt-3">
                     <div class="card card-shadow-sm">
-                        <div class="card-body">
-                            <table id="tabelaPrincipal" class="table table-template table-striped table-bordered text-sm">
-                                <thead>
-                                    <tr>
-                                        <th>@Html.DisplayNameFor(model => model.NoJogo)</th>
-                                        <th>@Html.DisplayNameFor(model => model.DsJogo)</th>
-                                        <th>@Html.DisplayNameFor(model => model.TipoJogo)</th>
-                                        <th>@Html.DisplayNameFor(model => model.JogadoresRegistrados)</th>
-                                        <th>@Html.DisplayNameFor(model => model.JogadoresOnline)</th>
-                                        <th>@Html.DisplayNameFor(model => model.CodigoPromocional)</th>
-                                        <th></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach (var item in Model)
-                                    {
-                                        <tr>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.NoJogo)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.DsJogo)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.TipoJogo.TipoJogoId)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.JogadoresRegistrados)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.JogadoresOnline)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.CodigoPromocional)
-                                            </td>
-                                            <td>
-                                                <div class="d-flex justify-content-center">
-                                                    @*<a asp-action="Edit" asp-route-id="@item.JogoModelViewId">Edit</a> |
-                                                        <a asp-action="Details" asp-route-id="@item.JogoModelViewId">Details</a> |
-                                                        <a asp-action="Delete" asp-route-id="@item.JogoModelViewId">Delete</a>*@
-                                                    <button type="button" class="btn btn-info btn-sm mr-1" title="Visualizar detalhes" data-toggle="modal" data-target="#exampleModalCenter" asp-action="CarregaModal">
-                                                        <i class="fas fa-eye"></i>
-                                                    </button>
-                                                    <button type="button" class="btn btn-info btn-sm mr-1" title="Visualizar detalhes" onclick="obtemDadosJogo()">
-                                                        <i class="fa fa-arrow-left"></i>
-                                                    </button>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    }
-                                </tbody>
-                            </table>
+                        <div class="card-body" id="someDiv">
+
                         </div>
                     </div>
                 </div>
@@ -80,16 +35,6 @@
         </div>
     </div>
 </section>
-
-<div>
-    <partial name="~/Views/Shared/_ListaJogos.cshtml" />
-
-    @{Html.RenderPartialAsync("~/Views/Shared/_ListaJogos.cshtml");}
-
-    @*@{Html.RenderAction("Test", "Controller");}*@
-
-    @*@await Component.InvokeAsync("~/Views/Shared/_ListaJogos.cshtml")*@
-</div>
 
 <!-- Modal de informações do jogo -->
 <div class="modal fade" id="modalAuxiliar" tabindex="-1" role="dialog" aria-hidden="true">
@@ -122,12 +67,23 @@
 </div>
 
 @section Scripts {
-
-    <script src="~/js/partidas.js"></script>
     <script>
-        // Tabela 6 - Lista de notificações
         $(document).ready(function () {
-            $('#tabelaPrincipal').DataTable({
+            carregaTabela();
+        });
+
+        function carregaTabela() {
+           $.ajax({
+                type: "POST",
+               data: JSON.stringify('@Model'),
+                async: false,
+                url: "CarregaDadosTabela",
+                contentType: "application/json"
+            }).done(function (res) {
+                $("#someDiv").html(res);
+            });
+
+           $('#tabelaPrincipal').DataTable({
                 order: [
                     [0, "desc"]
                 ],
@@ -139,8 +95,11 @@
                 language: {
                     url: "/datatables/Portuguese-Brasil.json"
                 }
-            });
+           });
+        }
 
-        });
+        function carregaPartialGet() {
+            $("#someDiv").load('@Url.Action("doctorsview","Jogos")');
+        }
     </script>
 }

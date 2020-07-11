@@ -1,16 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Nancy.Json;
 using Newtonsoft.Json;
 using ProjetoComSenha.Models;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Net;
+using System.Net.Http;
+using System.Text;
 
 namespace ProjetoComSenha.Controllers
 {
@@ -21,6 +19,36 @@ namespace ProjetoComSenha.Controllers
             ViewName = "_ListaJogos",
             ViewData = ViewData,
         };
+
+        [HttpPost]
+        public IActionResult CarregaDadosTabela(ListaJogosModelView listaJogosModelView)
+        {
+            var model = new ListaJogosModelView();
+
+            if (listaJogosModelView.DtInicial != null)
+            {
+                var horaAtual = Convert.ToUInt64(((DateTime)listaJogosModelView.DtInicial).ToString("yyyyMMddHHmmss"));
+            }
+
+            try
+            {
+                var httpWebRequest = (HttpWebRequest)WebRequest.Create(ProjetoComSenha.Common.Api + "Jogos/consultaQuery");
+                httpWebRequest.ContentType = "application/json";
+                httpWebRequest.Method = "GET";
+
+                var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
+                using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
+                {
+                    model.JogoModelView = JsonConvert.DeserializeObject<List<JogoModelView>>(streamReader.ReadToEnd());
+                }
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+
+            return PartialView("~/Views/Jogos/TabelaJogos.cshtml", model);
+        }
 
         public void CarregaModal()
         {
@@ -44,20 +72,25 @@ namespace ProjetoComSenha.Controllers
         }
 
         [HttpPost]
-        public IActionResult Teste(JogoModelView jogoModelView)
+        public IActionResult Teste(ListaJogosModelView listaJogosModelView)
         {
-            var model = new List<JogoModelView>();
+            var model = new ListaJogosModelView();
+
+            if (listaJogosModelView.DtInicial != null)
+            {
+                var horaAtual = Convert.ToUInt64(((DateTime)listaJogosModelView.DtInicial).ToString("yyyyMMddHHmmss"));
+            }
 
             try
             {
-                var httpWebRequest = (HttpWebRequest)WebRequest.Create(ProjetoComSenha.Common.Api + "Jogos");
+                var httpWebRequest = (HttpWebRequest)WebRequest.Create(ProjetoComSenha.Common.Api + "Jogos/consultaQuery");
                 httpWebRequest.ContentType = "application/json";
                 httpWebRequest.Method = "GET";
 
                 var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
                 using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
                 {
-                    model = JsonConvert.DeserializeObject<List<JogoModelView>>(streamReader.ReadToEnd());
+                    model.JogoModelView = JsonConvert.DeserializeObject<List<JogoModelView>>(streamReader.ReadToEnd());
                 }
             }
             catch (Exception e)
@@ -73,11 +106,18 @@ namespace ProjetoComSenha.Controllers
 
         public IActionResult ListaJogos()
         {
-            var model = new List<JogoModelView>();
+            var model = new ListaJogosModelView();
 
             if (TempData["ModelTemporario"] != null)
             {
-                model = JsonConvert.DeserializeObject<List<JogoModelView>>(TempData["ModelTemporario"].ToString());
+                try
+                {
+                    model = JsonConvert.DeserializeObject<ListaJogosModelView> (TempData["ModelTemporario"].ToString());
+                }
+                catch (Exception)
+                {
+                    TempData["ModelTemporario"] = null;
+                }
             }
 
             TempData["ModelTemporario"] = null;

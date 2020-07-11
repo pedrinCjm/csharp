@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Data;
 
 namespace ProjetoComSenhaApi.Controllers
 {
@@ -43,6 +44,68 @@ namespace ProjetoComSenhaApi.Controllers
                 .ToListAsync();
 
             return Ok(result);
+        }
+
+        // GET: api/Jogos
+        [HttpGet("consultaQuery")]
+        public async Task<IActionResult> GetJogoConsultaQuery()
+        {
+            DataTable dt = new DataTable();
+            List<Jogo> jogos = new List<Jogo>();
+
+            using (var connection = _context.Database.GetDbConnection())
+            {
+                connection.Open();
+
+                using (var command = connection.CreateCommand())
+                {
+                    var str_sql = "Select * from Jogo";
+
+                    command.CommandText = str_sql;
+
+                    var reader = command.ExecuteReader();
+
+                    dt.Load(reader);
+
+                    //jogos = dt.AsEnumerable().Select(row =>
+                    //new Jogo
+                    //{
+                    //    JogoId = row.Field<int>("JogoId"),
+                    //    DsJogo = row.Field<string>("DsJogo"),
+                    //    NoJogo = row.Field<string>("NoJogo"),
+                    //    TipoJogoId = row.Field<int>("TipoJogoId"),
+                    //    JogadoresRegistrados = 350,
+                    //    JogadoresOnline = 99,
+                    //    CodigoPromocional = "COD30"
+                    //}).ToList();
+
+                    //jogos = ConvertToList<Jogo>(dt);
+                }
+            }
+
+            return Ok(dt);
+        }
+
+        public static List<T> ConvertToList<T>(DataTable dt)
+        {
+            var columnNames = dt.Columns.Cast<DataColumn>().Select(c => c.ColumnName.ToLower()).ToList();
+            var properties = typeof(T).GetProperties();
+            return dt.AsEnumerable().Select(row =>
+            {
+                var objT = Activator.CreateInstance<T>();
+                foreach (var pro in properties)
+                {
+                    if (columnNames.Contains(pro.Name.ToLower()))
+                    {
+                        try
+                        {
+                            pro.SetValue(objT, row[pro.Name]);
+                        }
+                        catch (Exception ex) { }
+                    }
+                }
+                return objT;
+            }).ToList();
         }
 
         // GET: api/Jogos/5

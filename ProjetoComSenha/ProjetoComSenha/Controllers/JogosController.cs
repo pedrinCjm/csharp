@@ -21,7 +21,7 @@ namespace ProjetoComSenha.Controllers
         };
 
         [HttpPost]
-        public IActionResult CarregaDadosTabela(ListaJogosModelView listaJogosModelView)
+        public IActionResult CarregaDadosTabela([FromBody] ListaJogosModelView listaJogosModelView)
         {
             var model = new ListaJogosModelView();
 
@@ -121,6 +121,8 @@ namespace ProjetoComSenha.Controllers
             }
 
             TempData["ModelTemporario"] = null;
+
+            model.NoJogo = "teste";
 
             return View(model);
         }

@@ -73,9 +73,12 @@
         });
 
         function carregaTabela() {
+
+            var model = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(this.Model));
+
            $.ajax({
                 type: "POST",
-               data: JSON.stringify('@Model'),
+               data: JSON.stringify(model),
                 async: false,
                 url: "CarregaDadosTabela",
                 contentType: "application/json"

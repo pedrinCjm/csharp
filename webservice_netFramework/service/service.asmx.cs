@@ -1,37 +1,28 @@
 ﻿using Newtonsoft.Json;
+using service.Models;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Services;
-using webservice_netFramework.Controllers;
-using webservice_netFramework.Models;
 
-namespace webservice_netFramework
+namespace service
 {
     /// <summary>
-    /// Summary description for MeuServico
+    /// Summary description for service
     /// </summary>
     [WebService(Namespace = "http://tempuri.org/")]
     [WebServiceBinding(ConformsTo = WsiProfiles.BasicProfile1_1)]
     [System.ComponentModel.ToolboxItem(false)]
     // To allow this Web Service to be called from script, using ASP.NET AJAX, uncomment the following line. 
     // [System.Web.Script.Services.ScriptService]
-    public class MeuServico : System.Web.Services.WebService
+    public class service : System.Web.Services.WebService
     {
 
         [WebMethod]
         public string HelloWorld()
         {
             return "Hello World";
-        }
-
-        [WebMethod]
-        public List<string> AcessaHome()
-        {
-            return new Montadora().getAll();
         }
 
         [WebMethod]

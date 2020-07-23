@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Web.Services;
+using cliente.Models;
 
 namespace service
 {
@@ -48,6 +49,39 @@ namespace service
             }
 
             return model;
+        }
+
+        [WebMethod]
+        public ListaJogosModelView AcessaJogosComParametro()
+        {
+            var model = new ListaJogosModelView();
+
+            try
+            {
+                var httpWebRequest = (HttpWebRequest)WebRequest.Create("https://localhost:44307/api/" + "Jogos/consultaQuery");
+                httpWebRequest.ContentType = "application/json";
+                httpWebRequest.Method = "GET";
+
+                var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
+                using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
+                {
+                    model.JogoModelView = JsonConvert.DeserializeObject<List<JogoModelView>>(streamReader.ReadToEnd());
+                }
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+
+            return model;
+        }
+
+        [WebMethod]
+        public PRetornoCliente ImportaPedidoCliente(ImportaPedido importaPedido)
+        {
+            PRetornoCliente pRetornoCliente = new PRetornoCliente();
+
+            return pRetornoCliente;
         }
     }
 }

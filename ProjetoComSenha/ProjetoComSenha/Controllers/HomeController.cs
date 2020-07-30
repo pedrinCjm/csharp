@@ -211,6 +211,15 @@ namespace ProjetoComSenha.Controllers
             return View();
         }
 
+        public IActionResult Acoes()
+        {
+            TableFromPdf tableFromPdf = new TableFromPdf();
+
+            var resultado = tableFromPdf.Read();
+
+            return View(resultado);
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

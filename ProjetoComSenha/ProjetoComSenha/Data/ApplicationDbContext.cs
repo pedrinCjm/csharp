@@ -16,5 +16,6 @@ namespace ProjetoComSenha.Data
         public DbSet<ProjetoComSenha.Models.Jogo> Jogo { get; set; }
         public DbSet<ProjetoComSenha.Models.Jogador> Jogador { get; set; }
         public DbSet<ProjetoComSenha.Models.JogoModelView> JogoModelView { get; set; }
+        public DbSet<ProjetoComSenha.Models.Acao> Acao { get; set; }
     }
 }

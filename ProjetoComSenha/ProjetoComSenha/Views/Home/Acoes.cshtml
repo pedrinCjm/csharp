@@ -1,0 +1,114 @@
+﻿@model IEnumerable<ProjetoComSenha.Models.Acao>
+
+@{
+    ViewData["Title"] = "Ações";
+}
+
+<h2>Ações</h2>
+
+<table class="table" id="tabelaPrincipal">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.AcaoName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AcaoEmpresa)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AcaoTipo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AcaoQuatidade)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AcaoValor)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AcaoPreco)
+            </th>
+            <th>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AcaoName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AcaoEmpresa)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AcaoTipo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AcaoQuatidade)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AcaoValor)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AcaoPreco)
+                </td>
+                <td>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+           $('#tabelaPrincipal').DataTable({
+                order: [
+                    [0, "desc"]
+                ],
+                columnDefs: [{
+                    "orderable": false,
+                    "targets": [6]
+                }
+                ],
+                language: {
+                    url: "/datatables/Portuguese-Brasil.json"
+                }
+           });
+        });
+
+        function carregaTabela() {
+
+            var model = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(this.Model));
+
+           $.ajax({
+                type: "POST",
+               data: JSON.stringify(model),
+                async: false,
+                url: "CarregaDadosTabela",
+                contentType: "application/json"
+            }).done(function (res) {
+                $("#someDiv").html(res);
+            });
+
+           $('#tabelaPrincipal').DataTable({
+                order: [
+                    [0, "desc"]
+                ],
+                columnDefs: [{
+                    "orderable": false,
+                    "targets": [5]
+                }
+                ],
+                language: {
+                    url: "/datatables/Portuguese-Brasil.json"
+                }
+           });
+        }
+
+        function carregaPartialGet() {
+            $("#someDiv").load('@Url.Action("doctorsview","Jogos")');
+        }
+    </script>
+}

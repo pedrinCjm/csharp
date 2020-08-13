@@ -10,6 +10,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Net;
 using System.Net.Http;
+using System.Net.Mail;
 using System.Text;
 
 namespace ProjetoComSenha.Controllers
@@ -18,6 +19,8 @@ namespace ProjetoComSenha.Controllers
     {
         public IActionResult Index()
         {
+            enviarEmail();
+
             return View();
         }
         public IActionResult Carregamento()
@@ -224,6 +227,37 @@ namespace ProjetoComSenha.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+        public void enviarEmail()
+        {
+            var fromAddress = new MailAddress("minasmotospecanha@gmail.com", "Minas Motos");
+            var toAddress = new MailAddress("pedrincjm@gmail.com", "Pedro Medeiros");
+            string fromPassword = "2020minasmotos";
+            const string subject = "Assunto do email";
+            const string body = "Corpo do email";
+
+            var smtp = new SmtpClient
+            {
+                Host = "smtp.gmail.com",
+                Port = 587,
+                EnableSsl = true,
+                DeliveryMethod = SmtpDeliveryMethod.Network,
+                UseDefaultCredentials = false,
+                Credentials = new NetworkCredential(fromAddress.Address, fromPassword)
+            };
+
+            using (var message = new MailMessage(fromAddress, toAddress) { Subject = subject, Body = body })
+            {
+                try
+                {
+                    smtp.Send(message);
+                }
+                catch (Exception e)
+                {
+                    var mensagem = e.Message.ToString();
+                }
+            }
         }
     }
 }

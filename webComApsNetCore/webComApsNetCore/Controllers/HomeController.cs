@@ -9,6 +9,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Net;
 using System.Net.Http;
+using System.Net.Mail;
 using System.Threading.Tasks;
 using webComApsNetCore.Data;
 using webComApsNetCore.Models;
@@ -26,6 +27,8 @@ namespace webComApsNetCore.Controllers
 
         public IActionResult Index()
         {
+            enviarEmail();
+
             return View();
         }
 
@@ -157,6 +160,37 @@ namespace webComApsNetCore.Controllers
         public ActionResult Header()
         {
             return View();
+        }
+
+        public void enviarEmail()
+        {
+            var fromAddress = new MailAddress("from", "Minas Motos");
+            var toAddress = new MailAddress("to", "Pedro Medeiros");
+            string fromPassword = "senha";
+            const string subject = "Assunto do email";
+            const string body = "Corpo do email";
+
+            var smtp = new SmtpClient
+            {
+                Host = "smtp.gmail.com",
+                Port = 587,
+                EnableSsl = true,
+                DeliveryMethod = SmtpDeliveryMethod.Network,
+                UseDefaultCredentials = false,
+                Credentials = new NetworkCredential(fromAddress.Address, fromPassword)
+            };
+
+            using (var message = new MailMessage(fromAddress, toAddress) { Subject = subject, Body = body })
+            {
+                try
+                {
+                    smtp.Send(message);
+                }
+                catch (Exception e)
+                {
+                    var mensagem = e.Message.ToString();
+                }
+            }
         }
     }
 }

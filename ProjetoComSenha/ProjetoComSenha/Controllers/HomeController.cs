@@ -231,9 +231,9 @@ namespace ProjetoComSenha.Controllers
 
         public void enviarEmail()
         {
-            var fromAddress = new MailAddress("minasmotospecanha@gmail.com", "Minas Motos");
-            var toAddress = new MailAddress("pedrincjm@gmail.com", "Pedro Medeiros");
-            string fromPassword = "2020minasmotos";
+            var fromAddress = new MailAddress("***************@gmail.com", "Minas Motos");
+            var toAddress = new MailAddress("****************@gmail.com", "Pedro Medeiros");
+            string fromPassword = "***************";
             const string subject = "Assunto do email";
             const string body = "Corpo do email";
 
